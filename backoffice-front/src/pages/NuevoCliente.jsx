@@ -86,6 +86,14 @@ export default function NuevoCliente(){
                             fullWidth
                         />
                     </Grid>
+
+                     <Grid item xs={3}>
+                        <TextField
+                        type={"number"}
+                        label="Telefono"
+                        />
+                    </Grid>
+
                     <Grid item xs={3}>
                         <FormControl>
                             <FormLabel id="demo-controlled-radio-buttons-group">Genero</FormLabel>
@@ -102,35 +110,23 @@ export default function NuevoCliente(){
                         </FormControl>
                     </Grid>
 
-                    <Grid item xs={3}>
-                        <TextField
-                        defaultValue={"Activo"}
-                        label="Estado"
-                        disabled
-                        color="success"
-                        />
-                    </Grid>
-
-                    <Grid item xs={3}>
-                        <TextField
-                        type={"email"}
-                        label="Correo"
-                        />
-                    </Grid>
-
-                    <Grid item xs={3}>
-                        <TextField
-                        type={"number"}
-                        label="Telefono"
-                        />
-                    </Grid>
+                   
 
                     <Grid item xs={6}>
                         <TextField
-                        type={"number"}
-                        label="Telefono"
-                        />
+                        type={"email"}
+                        label="Correo"
+                        fullWidth
+
+                        />   
                     </Grid>
+
+                    <Grid item xs={6} sx={{mt:"0.8rem"}} textAlign={"end"}>
+                        <Button variant="contained"  color="error" size="large" sx={{mr:"1rem"}}>Cancelar</Button>
+                        <Button variant="contained" size="large">Guardar</Button>
+                    </Grid>
+
+                   
                     
                     
                     

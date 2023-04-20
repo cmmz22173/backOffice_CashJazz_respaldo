@@ -23,6 +23,11 @@ import FormLabel from '@mui/material/FormLabel';
 export default function NuevoEmpleado(){
 
     const [genero, setGenero] = React.useState('female');
+    const [estado, setEstado] = React.useState('activo');
+
+    const handleChangeEstado = (event) => {
+      setEstado(event.target.value);
+    }
 
   const handleChangeGenero = (event) => {
     setGenero(event.target.value);
@@ -103,12 +108,20 @@ export default function NuevoEmpleado(){
                     </Grid>
 
                     <Grid item xs={3}>
-                        <TextField
-                        defaultValue={"Activo"}
-                        label="Estado"
-                        disabled
-                        color="success"
-                        />
+                    <FormControl>
+                            <FormLabel id="demo-controlled-radio-buttons-group">Activo</FormLabel>
+                            <RadioGroup
+                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                name="controlled-radio-buttons-group"
+                                value={estado}
+                                onChange={handleChangeEstado}
+                                row
+                            >
+                                <FormControlLabel  value="activo" control={<Radio />} label="Si" />
+                                <FormControlLabel  value="inactivo" control={<Radio />} label="No" />
+                            </RadioGroup>
+                        </FormControl>
+                        
                     </Grid>
 
                     <Grid item xs={3}>
@@ -124,13 +137,12 @@ export default function NuevoEmpleado(){
                         label="Telefono"
                         />
                     </Grid>
-
-                    <Grid item xs={6}>
-                        <TextField
-                        type={"number"}
-                        label="Telefono"
-                        />
+                    
+                    <Grid item xs={6} sx={{mt:"0.8rem"}} textAlign={"end"}>
+                        <Button variant="contained"  color="error" size="large" sx={{mr:"1rem"}}>Cancelar</Button>
+                        <Button variant="contained" size="large">Guardar</Button>
                     </Grid>
+                 
                     
                     
                     
