@@ -26,7 +26,7 @@ import BallotIcon from '@mui/icons-material/Ballot';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 
 export default function ListSidebar(){
 
@@ -68,7 +68,7 @@ export default function ListSidebar(){
                 </ListItemButton>
                 <Collapse in={openEmpleados} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <Link to={"/crear/empleado"} style={{ textDecoration: 'none' }}>
+                        <Link to={"/empleado/crear"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <PersonAddAlt1Icon />
@@ -76,7 +76,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Nuevo" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/editar/empleado"} style={{ textDecoration: 'none' }}>
+                        <Link to={"/empleado/editar"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <ManageAccountsIcon />
@@ -95,7 +95,7 @@ export default function ListSidebar(){
                 </ListItemButton>
                 <Collapse in={openServicios} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <Link to={"/crear/servicio"} style={{ textDecoration: 'none' }}>
+                        <Link to={"/servicio/crear"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <AddBusinessIcon />
@@ -103,7 +103,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Nuevo" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/editar/servicio"} style={{ textDecoration: 'none' }}>
+                        <Link to={"/servicio/editar"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <DriveFileRenameOutlineIcon />
@@ -122,7 +122,7 @@ export default function ListSidebar(){
                 </ListItemButton>
                 <Collapse in={openClientes} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <Link to={"/crear/cliente"} style={{ textDecoration: 'none' }}>
+                        <Link to={"/cliente/crear"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <PersonAddAlt1Icon  />
@@ -130,7 +130,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Nuevo" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/buscar/cliente"} style={{ textDecoration: 'none' }}>
+                        <Link to={"/cliente/buscar"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <PersonSearchIcon  />
@@ -149,7 +149,7 @@ export default function ListSidebar(){
                 </ListItemButton>
                 <Collapse in={openCitas} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                    <Link to={"/registros/lavados"} style={{ textDecoration: 'none' }}>
+                    <Link to={"/lavado/registros"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <BallotIcon  />
@@ -157,12 +157,20 @@ export default function ListSidebar(){
                                 <ListItemText primary="Registros" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/crear/lavado"} style={{ textDecoration: 'none' }}>
+                        <Link to={"/lavado/crear"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <EventIcon  />
                                 </ListItemIcon>
                                 <ListItemText primary="Crear" sx={{color:"black"}}/>
+                            </ListItemButton>
+                        </Link>
+                        <Link to={"/lavado/progreso"} style={{ textDecoration: 'none' }}>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <ModelTrainingIcon  />
+                                </ListItemIcon>
+                                <ListItemText primary="En curso" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
                       

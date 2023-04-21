@@ -11,6 +11,9 @@ import NuevoCliente from '../pages/NuevoCliente';
 import RegistrosLavados from '../pages/RegistrosLavado';
 import EditarCliente from '../pages/EditarCliente';
 import EditarEmpleado from '../pages/EditarEmpleado';
+import NuevoVehiculo from '../pages/NuevoVehiculo';
+import NuevoServicio from '../pages/NuevoServicio';
+import NuevoLavado from '../pages/NuevoLavado';
  
 function Rutas() {
   return (
@@ -18,12 +21,15 @@ function Rutas() {
     <Routes> 
         <Route path="/login" element={ <Login/>}/>  
         <Route path="*" element={<Error/>}/>
-        <Route path="/crear/empleado" element={<NuevoEmpleado/>}/>
+        <Route path="/empleado/crear" element={<NuevoEmpleado/>}/>
         <Route path="/" element={<NuevoEmpleado/>}/>
-        <Route path="/crear/cliente" element={<NuevoCliente/>}/>
-        <Route path="/registros/lavados" element={<RegistrosLavados/>}/>
-        <Route path="/editar/cliente" element={<EditarCliente/>}/>
-        <Route path="/editar/empleado" element={<EditarEmpleado/>}/>
+        <Route path="/cliente/crear" element={<NuevoCliente/>}/>
+        <Route path="/lavado/registros" element={<RegistrosLavados/>}/>
+        <Route path="/cliente/editar" element={<EditarCliente/>}/>
+        <Route path="/empleado/editar" element={<EditarEmpleado/>}/>
+        <Route path="/vehiculo/crear" element={<NuevoVehiculo/>}/>
+        <Route path="/servicio/crear" element={<NuevoServicio/>}/>
+        <Route path="/lavado/crear" element={<NuevoLavado/>}/>
     </Routes>
 </Router>
   );

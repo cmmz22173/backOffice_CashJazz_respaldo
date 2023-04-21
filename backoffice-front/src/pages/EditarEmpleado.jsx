@@ -72,6 +72,12 @@ export default function EditarEmpleado() {
     setChecked(event.target.checked);
   };
 
+  const [puesto, setPuesto] = React.useState();
+
+  const handleChangePuesto = (event) => {
+    setPuesto(event.target.value);
+  };
+
   
   return (
       <>
@@ -95,7 +101,7 @@ export default function EditarEmpleado() {
                   <Tabs value={value} onChange={handleChange} centered aria-label="basic tabs example">
                       <Tab label="Informacion Personal" {...a11yProps(0)} />
                       <Tab label="Laboral" {...a11yProps(1)} />
-                      <Tab label="Lavados" {...a11yProps(2)} />
+                     
                   </Tabs>
               </Box>
               <TabPanel value={value} index={0}>
@@ -226,12 +232,107 @@ export default function EditarEmpleado() {
                   </Grid>
                   
               </TabPanel>
-              <TabPanel value={value} index={1}>
-                  Item Two
-              </TabPanel>
-              <TabPanel value={value} index={2}>
-                  Item Three
-              </TabPanel>
+				  <TabPanel value={value} index={1}>
+					  <Grid container spacing={2}>
+						  <Grid item xs={6} textAlign={"start"}>
+							  Editar puesto de trabajo
+
+						  </Grid>
+						  <Grid item xs={6} textAlign={"end"}>
+							  Editar
+							  <Switch
+								  checked={checked}
+								  onChange={handleChangeSwitch}
+								  inputProps={{ 'aria-label': 'controlled' }}
+							  />
+						  </Grid>
+						  <Grid item xs={12}>
+
+							  <FormControl>
+								  <FormLabel id="demo-controlled-radio-buttons-group">Puesto</FormLabel>
+								  <RadioGroup
+									  aria-labelledby="demo-controlled-radio-buttons-group"
+									  name="controlled-radio-buttons-group"
+									  value={puesto}
+									  onChange={handleChangePuesto}
+									  row
+								  >
+									  <FormControlLabel disabled={!checked ? true : false} value="Administrador" control={<Radio />} label="Administrador" />
+									  <FormControlLabel disabled={!checked ? true : false} value="Lavador" control={<Radio />} label="Lavador" />
+									  <FormControlLabel disabled={!checked ? true : false} value="Guardia" control={<Radio />} label="Guardia" />
+								  </RadioGroup>
+							  </FormControl>
+						  </Grid>
+						  <Grid item xs={12} hidden={(puesto==="Administrador")?false:true}>
+							<Grid id="administrativo" container spacing={2}>
+								<Grid item xs={4} textAlign={"center"}>
+									<TextField
+									label="User"
+									disabled={!checked ? true : false}
+									/>
+									
+								</Grid>
+								<Grid item xs={4} textAlign={"center"}>
+									
+									<TextField
+									label="Password"
+									type={"password"}
+									fullWidth
+									disabled={!checked ? true : false}
+									/>
+								</Grid>
+
+								<Grid item xs={4} textAlign={"center"}>
+									<TextField
+									label="confirm password"
+									type={"password"}
+									fullWidth
+									disabled={!checked ? true : false}
+									/>
+								</Grid>
+
+								<Grid item xs={12} textAlign={"end"}>
+									<Button variant="contained"
+									disabled={!checked ? true : false}
+									>Guardar</Button>
+								</Grid>
+
+							</Grid>
+						  </Grid>
+						  <Grid id="Lavador" item xs={12} hidden={(puesto==="Lavador")?false:true}>
+						  <Grid  container spacing={2}>
+								
+								<Grid item xs={6} textAlign={""}>
+									
+									<TextField
+									label="hora inicio"
+									type={"time"}
+									fullWidth
+									disabled={!checked ? true : false}
+									/>
+								</Grid>
+
+								<Grid item xs={6} textAlign={""}>
+									<TextField
+									label="hora final"
+									type={"time"}
+									fullWidth
+									disabled={!checked ? true : false}
+									/>
+								</Grid>
+
+								<Grid item xs={12} textAlign={"end"}>
+									<Button variant="contained"
+									disabled={!checked ? true : false}>Guardar</Button>
+								</Grid>
+
+							</Grid>
+						  </Grid>
+						  <Grid item xs={12}>
+
+						  </Grid>
+					  </Grid>
+				  </TabPanel>
           </Box>
         </Container>
       </>
