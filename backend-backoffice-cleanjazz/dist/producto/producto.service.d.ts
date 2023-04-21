@@ -6,9 +6,9 @@ import { UpdateProductoDto } from './dto/update-producto.dto';
 export declare class ProductoService {
     private productoRepository;
     constructor(productoRepository: Repository<Producto>);
-    createProducto(Producto: createProductoDto): Promise<Producto | HttpException>;
+    createProducto(Producto: createProductoDto): Promise<HttpException | Producto>;
     getProductos(): Promise<Producto[]>;
-    getproducto(id: number): Promise<Producto | HttpException>;
+    getproducto(id: number): Promise<HttpException | Producto>;
     deleteproducto(id: number): Promise<HttpException | (Producto & {
         estado: string;
     })>;

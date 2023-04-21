@@ -7,7 +7,7 @@ export declare class TipoProductoService {
     private TipoProductoRepository;
     constructor(TipoProductoRepository: Repository<TipoProducto>);
     getTipoProductos(): Promise<TipoProducto[]>;
-    getTipoProducto(id: number): Promise<TipoProducto | HttpException>;
-    createTipoProducto(tipoProducto: CreateTipoProductoDto): Promise<TipoProducto | HttpException>;
+    getTipoProducto(id: number): Promise<HttpException | TipoProducto>;
+    createTipoProducto(tipoProducto: CreateTipoProductoDto): Promise<HttpException | TipoProducto>;
     updateTipoProducto(id: number, tipoProducto: UpdateTipoProductoDto): Promise<HttpException | (TipoProducto & UpdateTipoProductoDto)>;
 }

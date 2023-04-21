@@ -4,18 +4,13 @@ import ButtonAppBar from '../components/Navbar';
 import { Box, Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { DataGrid} from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import axios from 'axios';
 import FormLabel from '@mui/material/FormLabel';
 
   
@@ -24,6 +19,41 @@ export default function NuevoEmpleado(){
 
     const [genero, setGenero] = React.useState('female');
     const [estado, setEstado] = React.useState('activo');
+    const [primerNombre, setPrimerNombre] = useState("");
+    const [segundoNombre, setSegundoNombre] = useState("");
+    const [primerApellido, setPrimerApellido] = useState("");
+    const [segundoApellido, setSegundoApellido] = useState("");
+    const [identidad, setIdentidad] = useState("");
+    const [correo, setCorreo] = useState("");
+    const [telefono, setTelefono] = useState("");
+
+    const handleChangePrimerNombre = (event) => {
+        setPrimerNombre(event.target.value);
+      };
+      
+      const handleChangeSegundoNombre = (event) => {
+        setSegundoNombre(event.target.value);
+      };
+      
+      const handleChangePrimerApellido = (event) => {
+        setPrimerApellido(event.target.value);
+      };
+      
+      const handleChangeSegundoApellido = (event) => {
+        setSegundoApellido(event.target.value);
+      };
+      
+      const handleChangeIdentidad = (event) => {
+        setIdentidad(event.target.value);
+      };
+      
+      const handleChangeCorreo = (event) => {
+        setCorreo(event.target.value);
+      };
+      
+      const handleChangeTelefono = (event) => {
+        setTelefono(event.target.value);
+      };
 
     const handleChangeEstado = (event) => {
       setEstado(event.target.value);
@@ -32,6 +62,30 @@ export default function NuevoEmpleado(){
   const handleChangeGenero = (event) => {
     setGenero(event.target.value);
   }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      genero: genero,
+      estado: estado,
+      primerNombre: primerNombre,
+      segundoNombre: segundoNombre,
+      primerApellido: primerApellido,
+      segundoApellido: segundoApellido,
+      dni: identidad,
+      correo: correo,
+      celular: telefono
+    };
+
+    axios.post('http://localhost:3000/empleados', data)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  
     return(
         <>
             <ButtonAppBar />
@@ -45,12 +99,13 @@ export default function NuevoEmpleado(){
                         Nuevo Empleado
                 </Typography>
 
-                <Grid component={"form"} container spacing={2} marginTop={3} >
+                <Grid container spacing={2} marginTop={3} >
                     <Grid item xs={3}>
                         <TextField
                             required
                             id="primerNombre"
                             label="Primer Nombre"
+                            onChange={handleChangePrimerNombre}
                           
                         />
                     </Grid>
@@ -58,18 +113,18 @@ export default function NuevoEmpleado(){
                     <Grid item xs={3}>
                         <TextField
                             required
-                            id="primerNombre"
+                            id="segundoNombre"
                             label="Segundo Nombre"
-                          
+                            onChange={handleChangeSegundoNombre}
                         />
                     </Grid>
 
                     <Grid item xs={3}>
                         <TextField
                             required
-                            id="primerNombre"
+                            id="primerApellido"
                             label="Primer Apellido"
-                            
+                            onChange={handleChangePrimerApellido}
                         />
                     </Grid>
 
@@ -78,6 +133,7 @@ export default function NuevoEmpleado(){
                             required
                             id="primerNombre"
                             label="Segundo Apellido"
+                            onChange={handleChangeSegundoApellido}
                     
                         />
                     </Grid>
@@ -89,6 +145,7 @@ export default function NuevoEmpleado(){
                             label="Identidad"
                             type={"number"}
                             fullWidth
+                            onChange={handleChangeIdentidad}
                         />
                     </Grid>
                     <Grid item xs={3}>
@@ -128,6 +185,7 @@ export default function NuevoEmpleado(){
                         <TextField
                         type={"email"}
                         label="Correo"
+                        onChange={handleChangeCorreo}
                         />
                     </Grid>
 
@@ -135,12 +193,13 @@ export default function NuevoEmpleado(){
                         <TextField
                         type={"number"}
                         label="Telefono"
+                        onChange={handleChangeTelefono}
                         />
                     </Grid>
                     
                     <Grid item xs={6} sx={{mt:"0.8rem"}} textAlign={"end"}>
                         <Button variant="contained"  color="error" size="large" sx={{mr:"1rem"}}>Cancelar</Button>
-                        <Button variant="contained" size="large">Guardar</Button>
+                        <Button variant="contained" size="large" onClick={handleSubmit}>Guardar</Button>
                     </Grid>
                  
                     

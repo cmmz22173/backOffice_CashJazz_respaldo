@@ -5,8 +5,8 @@ import { InventarioService } from './inventario.service';
 export declare class InventarioController {
     private InventarioService;
     constructor(InventarioService: InventarioService);
-    createInventario(newInventario: CreateInventarioDto): Promise<Inventario | import("@nestjs/common").HttpException>;
+    createInventario(newInventario: CreateInventarioDto): Promise<import("@nestjs/common").HttpException | Inventario>;
     getInventarios(): Promise<Inventario[]>;
-    getInventario(id: number): Promise<Inventario | import("@nestjs/common").HttpException>;
+    getInventario(id: number): Promise<import("@nestjs/common").HttpException | Inventario>;
     updateInventario(id: number, Inventario: UpdateInventarioDto): Promise<import("@nestjs/common").HttpException | (Inventario & typeof import("./inventario.entity").Inventario)>;
 }

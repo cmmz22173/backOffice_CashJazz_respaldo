@@ -6,8 +6,8 @@ import { Inventario } from './inventario.entity';
 export declare class InventarioService {
     private InventarioRepository;
     constructor(InventarioRepository: Repository<Inventario>);
-    createInventario(Inventario: CreateInventarioDto): Promise<Inventario | HttpException>;
+    createInventario(Inventario: CreateInventarioDto): Promise<HttpException | Inventario>;
     getInventarios(): Promise<Inventario[]>;
-    getInventario(id: number): Promise<Inventario | HttpException>;
+    getInventario(id: number): Promise<HttpException | Inventario>;
     updateInventario(id: number, user: UpdateInventarioDto): Promise<HttpException | (Inventario & typeof Inventario)>;
 }
