@@ -27,6 +27,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import MinorCrashIcon from '@mui/icons-material/MinorCrash';
 
 export default function ListSidebar(){
 
@@ -84,6 +85,14 @@ export default function ListSidebar(){
                                 <ListItemText primary="Editar" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
+                        <Link to={"/empleado/registros"} style={{ textDecoration: 'none' }}>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <BallotIcon  />
+                                </ListItemIcon>
+                                <ListItemText primary="Registros" sx={{color:"black"}}/>
+                            </ListItemButton>
+                        </Link>
                     </List>
                 </Collapse>
                 <ListItemButton onClick={handleClickServicios}>
@@ -111,6 +120,14 @@ export default function ListSidebar(){
                                 <ListItemText primary="Editar" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
+                        <Link to={"/servicio/registros"} style={{ textDecoration: 'none' }}>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <BallotIcon  />
+                                </ListItemIcon>
+                                <ListItemText primary="Registros" sx={{color:"black"}}/>
+                            </ListItemButton>
+                        </Link>
                     </List>
                 </Collapse>
                 <ListItemButton onClick={handleClickClientes}>
@@ -130,12 +147,28 @@ export default function ListSidebar(){
                                 <ListItemText primary="Nuevo" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/cliente/buscar"} style={{ textDecoration: 'none' }}>
+                        <Link to={"/cliente/editar"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <PersonSearchIcon  />
                                 </ListItemIcon>
                                 <ListItemText primary="Buscar" sx={{color:"black"}}/>
+                            </ListItemButton>
+                        </Link>
+                        <Link to={"/cliente/vehiculos"} style={{ textDecoration: 'none' }}>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <MinorCrashIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary="Vehiculos" sx={{color:"black"}}/>
+                            </ListItemButton>
+                        </Link>
+                        <Link to={"/cliente/registros"} style={{ textDecoration: 'none' }}>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <BallotIcon  />
+                                </ListItemIcon>
+                                <ListItemText primary="Registro" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
                     </List>
