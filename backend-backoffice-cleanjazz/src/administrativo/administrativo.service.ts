@@ -61,5 +61,10 @@ export class AdministrativoService {
         const updateadministrativo = Object.assign(administrativoFound, administrativo)
         return this.administrativoRepository.save(updateadministrativo)
 
-}
+    }
+    async findOne(usuario: string) {
+        return await this.administrativoRepository.findOne({ where: { usuario } });
+      }
+      
+    
 }

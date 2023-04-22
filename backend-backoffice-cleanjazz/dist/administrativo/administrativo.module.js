@@ -12,11 +12,18 @@ const administrativo_controller_1 = require("./administrativo.controller");
 const administrativo_service_1 = require("./administrativo.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const administrativo_entity_1 = require("./administrativo.entity");
+const jwt_1 = require("@nestjs/jwt");
 let AdministrativoModule = class AdministrativoModule {
 };
 AdministrativoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([administrativo_entity_1.Administrativo])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([administrativo_entity_1.Administrativo]),
+            jwt_1.JwtModule.register({
+                secret: 'mysecretkey',
+                signOptions: { expiresIn: '30m' },
+            }),
+        ],
         controllers: [administrativo_controller_1.AdministrativoController],
         providers: [administrativo_service_1.AdministrativoService]
     })

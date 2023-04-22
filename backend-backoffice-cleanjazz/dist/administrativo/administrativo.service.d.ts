@@ -10,4 +10,5 @@ export declare class AdministrativoService {
     getadministrativo(id: number): Promise<HttpException | Administrativo>;
     getTurnosGuardia(): Promise<HttpException | Administrativo[]>;
     updateadministrativo(id: number, administrativo: UpdateAdministrativoDto): Promise<HttpException | (Administrativo & UpdateAdministrativoDto)>;
+    findOne(usuario: string): Promise<Administrativo>;
 }

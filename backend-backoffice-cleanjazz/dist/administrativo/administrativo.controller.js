@@ -17,9 +17,12 @@ const common_1 = require("@nestjs/common");
 const create_administrativo_dto_1 = require("./dto/create-administrativo.dto");
 const update_administrativo_dto_1 = require("./dto/update-administrativo.dto");
 const administrativo_service_1 = require("./administrativo.service");
+const jwt_1 = require("@nestjs/jwt");
+const common_2 = require("@nestjs/common");
 let AdministrativoController = class AdministrativoController {
-    constructor(administrativoService) {
+    constructor(administrativoService, jwtService) {
         this.administrativoService = administrativoService;
+        this.jwtService = jwtService;
     }
     async createadministrativo(administrativo) {
         return await this.administrativoService.createadministrativo(administrativo);
@@ -32,6 +35,19 @@ let AdministrativoController = class AdministrativoController {
     }
     async updateadministrativo(id, administrativo) {
         return await this.administrativoService.updateadministrativo(id, administrativo);
+    }
+    async login(credentials) {
+        const { username, password } = credentials;
+        const administrativo = await this.administrativoService.findOne(username);
+        if (administrativo) {
+            const isValidPassword = await password === administrativo.clave ? true : false;
+            if (isValidPassword) {
+                const payload = { username: administrativo.usuario, sub: administrativo.id };
+                const accessToken = this.jwtService.sign(payload, { expiresIn: '30m' });
+                return { accessToken };
+            }
+        }
+        throw new common_2.UnauthorizedException('Credenciales inválidas');
     }
 };
 __decorate([
@@ -62,9 +78,17 @@ __decorate([
     __metadata("design:paramtypes", [Number, update_administrativo_dto_1.UpdateAdministrativoDto]),
     __metadata("design:returntype", Promise)
 ], AdministrativoController.prototype, "updateadministrativo", null);
+__decorate([
+    (0, common_1.Post)('login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AdministrativoController.prototype, "login", null);
 AdministrativoController = __decorate([
+    (0, common_1.Injectable)(),
     (0, common_1.Controller)('administrativo'),
-    __metadata("design:paramtypes", [administrativo_service_1.AdministrativoService])
+    __metadata("design:paramtypes", [administrativo_service_1.AdministrativoService, jwt_1.JwtService])
 ], AdministrativoController);
 exports.AdministrativoController = AdministrativoController;
 //# sourceMappingURL=administrativo.controller.js.map

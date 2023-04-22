@@ -14,7 +14,7 @@ import EditarEmpleado from '../pages/EditarEmpleado';
 import NuevoVehiculo from '../pages/NuevoVehiculo';
 import NuevoServicio from '../pages/NuevoServicio';
 import NuevoLavado from '../pages/NuevoLavado';
- 
+
 function Rutas() {
   return (
     <Router>
@@ -30,6 +30,7 @@ function Rutas() {
         <Route path="/vehiculo/crear" element={<NuevoVehiculo/>}/>
         <Route path="/servicio/crear" element={<NuevoServicio/>}/>
         <Route path="/lavado/crear" element={<NuevoLavado/>}/>
+        
     </Routes>
 </Router>
   );

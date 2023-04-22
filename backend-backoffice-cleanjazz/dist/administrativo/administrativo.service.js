@@ -63,6 +63,9 @@ let AdministrativoService = class AdministrativoService {
         const updateadministrativo = Object.assign(administrativoFound, administrativo);
         return this.administrativoRepository.save(updateadministrativo);
     }
+    async findOne(usuario) {
+        return await this.administrativoRepository.findOne({ where: { usuario } });
+    }
 };
 AdministrativoService = __decorate([
     (0, common_1.Injectable)(),

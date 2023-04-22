@@ -1,4 +1,5 @@
 import * as React from 'react';
+import  { useState,useEffect } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +15,10 @@ import '../styles/Login.css'
 import logo from '../images/Admin.png'
 import car from '../images/car1.jpg'
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from 'react-router-dom';
+
 
 function Copyright(props) {
   return (
@@ -28,116 +33,30 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+export default function Login() {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [accessToken, setAccessToken] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/administrativo/login', { username, password });
+      setAccessToken(response.data.accessToken);
+      Cookies.set('accessToken', response.data.accessToken);
+      navigate('/');// redireccionar a la página de dashboard después del inicio de sesión
+    } catch (error) {
+      alert('Credenciales inválidas');
+    }
+  }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: `url(${car})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            
-          }}
-       
-        />
-        <Grid className='Login-background' sx={{bgcolor:'#92b1d5'}} item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              
-            }}
-          >
-
-        
-            <Link to={"/"} style={{ textDecoration: 'none' }}>
-            <Avatar sx={{ m: 1, width: 210,height: 210}} src={logo}/>
-            </Link> 
-              
-            <Typography component="h1" variant="h5">
-              Iniciar Sesión
-            </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1}}>
-              <TextField style={{ borderColor: '#fff'}}
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Correo Electrónico"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                color="warning"
-
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                color="warning"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Recuérdame"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 2, mb: 1,backgroundColor: '#2f74b3',
-                '&:hover': {
-                  backgroundColor: '#2b70bd',
-                  
-                },}}
-              >
-                Iniciar Sesión
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                  ¿Has olvidado la contraseña?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"¿No tienes una cuenta? Regístrate"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-
-      
-
-    </ThemeProvider>
+    <form>
+      <TextField label="Nombre de usuario" value={username} onChange={e => setUsername(e.target.value)} />
+      <TextField label="Contraseña" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <Button variant="contained" color="primary" onClick={handleLogin}>Iniciar sesión</Button>
+      {accessToken && <p>Tu token JWT es: {accessToken}</p>}
+    </form>
   );
 }
