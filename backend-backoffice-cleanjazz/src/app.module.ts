@@ -18,7 +18,7 @@ import { ProductoModule } from './producto/producto.module';
 import { InventarioModule } from './inventario/inventario.module';
 import { TurnoGuardiaModule } from './turno-guardia/turno-guardia.module';
 import { LavadorProductoModule } from './lavador-producto/lavador-producto.module';
-
+import { TipoServicioModule } from './tipo-servicio/tipo-servicio.module';
 
 
 @Module({
@@ -50,7 +50,8 @@ import { LavadorProductoModule } from './lavador-producto/lavador-producto.modul
     ProductoModule,
     InventarioModule,
     LavadorProductoModule,
-    TurnoGuardiaModule],
+    TurnoGuardiaModule,
+    TipoServicioModule],
   controllers: [AppController],
   providers: [AppService],
 })

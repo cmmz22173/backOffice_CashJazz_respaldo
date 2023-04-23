@@ -6,10 +6,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TemporaryDrawer from '../components/Sidebar';
 import ProfileMenuButton from './ProfileMenuButton';
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 export default function ButtonAppBar() {
+  const navigate = useNavigate();
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

@@ -27,6 +27,7 @@ const producto_module_1 = require("./producto/producto.module");
 const inventario_module_1 = require("./inventario/inventario.module");
 const turno_guardia_module_1 = require("./turno-guardia/turno-guardia.module");
 const lavador_producto_module_1 = require("./lavador-producto/lavador-producto.module");
+const tipo_servicio_module_1 = require("./tipo-servicio/tipo-servicio.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -59,7 +60,8 @@ AppModule = __decorate([
             producto_module_1.ProductoModule,
             inventario_module_1.InventarioModule,
             lavador_producto_module_1.LavadorProductoModule,
-            turno_guardia_module_1.TurnoGuardiaModule
+            turno_guardia_module_1.TurnoGuardiaModule,
+            tipo_servicio_module_1.TipoServicioModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -66,6 +66,12 @@ let AdministrativoService = class AdministrativoService {
     async findOne(usuario) {
         return await this.administrativoRepository.findOne({ where: { usuario } });
     }
+    async getAdministrativosFullInfo() {
+        return await this.administrativoRepository.createQueryBuilder('administrativo')
+            .innerJoin('administrativo.empleado', 'empleado')
+            .leftJoin('administrativo.puesto', 'puesto')
+            .getMany();
+    }
 };
 AdministrativoService = __decorate([
     (0, common_1.Injectable)(),

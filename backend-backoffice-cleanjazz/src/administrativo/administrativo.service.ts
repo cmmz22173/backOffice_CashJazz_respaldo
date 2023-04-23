@@ -65,6 +65,14 @@ export class AdministrativoService {
     async findOne(usuario: string) {
         return await this.administrativoRepository.findOne({ where: { usuario } });
       }
+
+      async getAdministrativosFullInfo() {
+        return await this.administrativoRepository.createQueryBuilder('administrativo')
+            .innerJoin('administrativo.empleado', 'empleado')
+            .leftJoin('administrativo.puesto', 'puesto')
+            .getMany();
+    }
+        
       
     
 }

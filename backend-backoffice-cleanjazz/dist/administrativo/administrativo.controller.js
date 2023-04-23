@@ -49,6 +49,9 @@ let AdministrativoController = class AdministrativoController {
         }
         throw new common_2.UnauthorizedException('Credenciales inválidas');
     }
+    async getAdministrativosFullInfo() {
+        return await this.administrativoService.getAdministrativosFullInfo();
+    }
 };
 __decorate([
     (0, common_1.Post)(),
@@ -85,6 +88,12 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AdministrativoController.prototype, "login", null);
+__decorate([
+    (0, common_1.Get)('/full-info-admin'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AdministrativoController.prototype, "getAdministrativosFullInfo", null);
 AdministrativoController = __decorate([
     (0, common_1.Injectable)(),
     (0, common_1.Controller)('administrativo'),

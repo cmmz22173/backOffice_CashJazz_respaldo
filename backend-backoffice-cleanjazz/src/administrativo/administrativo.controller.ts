@@ -4,7 +4,6 @@ import { UpdateAdministrativoDto } from './dto/update-administrativo.dto';
 import { AdministrativoService } from './administrativo.service';
 import { JwtService } from '@nestjs/jwt';
 import { UnauthorizedException } from '@nestjs/common';
-
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -61,4 +60,10 @@ export class AdministrativoController {
          throw new UnauthorizedException('Credenciales inválidas');
      
  }
+
+        @Get('/full-info-admin')
+        async getAdministrativosFullInfo() {
+            return await this.administrativoService.getAdministrativosFullInfo();
+ }
+
 }

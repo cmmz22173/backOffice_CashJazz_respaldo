@@ -12,8 +12,12 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import axios from 'axios';
 import FormLabel from '@mui/material/FormLabel';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
-  
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function NuevoEmpleado(){
 
@@ -26,6 +30,20 @@ export default function NuevoEmpleado(){
     const [identidad, setIdentidad] = useState("");
     const [correo, setCorreo] = useState("");
     const [telefono, setTelefono] = useState("");
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setOpen(false);
+    };
 
     const handleChangePrimerNombre = (event) => {
         setPrimerNombre(event.target.value);
@@ -79,6 +97,7 @@ export default function NuevoEmpleado(){
     axios.post('http://localhost:3000/empleados', data)
       .then(response => {
         console.log(response);
+        setOpen(true)
       })
       .catch(error => {
         console.log(error);
@@ -90,6 +109,13 @@ export default function NuevoEmpleado(){
         <>
             <ButtonAppBar />
             <Container maxWidth="md">
+
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+            El empleado se creo correctamente
+           </Alert>
+           </Snackbar>  
+
 
                 <Typography 
                     marginTop={5} 

@@ -45,10 +45,13 @@ export default function Login() {
       const response = await axios.post('http://localhost:3000/administrativo/login', { username, password });
       setAccessToken(response.data.accessToken);
       Cookies.set('accessToken', response.data.accessToken);
-      navigate('/');// redireccionar a la página de dashboard después del inicio de sesión
+      
+      // redireccionar a la página de dashboard después del inicio de sesión
     } catch (error) {
       alert('Credenciales inválidas');
+      
     }
+    navigate('/');
   }
 
   return (

@@ -28,7 +28,8 @@ import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import MinorCrashIcon from '@mui/icons-material/MinorCrash';
-
+import { ValidarToken } from '../services/Guard';
+import { isTokenValid } from '../services/Guard';
 export default function ListSidebar(){
 
     const [openEmpleados, setOpenEmpleados] = React.useState(false);
@@ -69,7 +70,7 @@ export default function ListSidebar(){
                 </ListItemButton>
                 <Collapse in={openEmpleados} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <Link to={"/empleado/crear"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/empleado/crear":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <PersonAddAlt1Icon />
@@ -77,7 +78,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Nuevo" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/empleado/editar"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/empleado/editar":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <ManageAccountsIcon />
@@ -85,7 +86,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Editar" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/empleado/registros"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/empleado/registros":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <BallotIcon  />
@@ -104,7 +105,7 @@ export default function ListSidebar(){
                 </ListItemButton>
                 <Collapse in={openServicios} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <Link to={"/servicio/crear"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/servicio/crear":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <AddBusinessIcon />
@@ -112,7 +113,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Nuevo" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/servicio/editar"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/servicio/editar":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <DriveFileRenameOutlineIcon />
@@ -120,7 +121,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Editar" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/servicio/registros"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/servicio/registros":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <BallotIcon  />
@@ -139,7 +140,7 @@ export default function ListSidebar(){
                 </ListItemButton>
                 <Collapse in={openClientes} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <Link to={"/cliente/crear"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/cliente/crear":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <PersonAddAlt1Icon  />
@@ -147,7 +148,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Nuevo" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/cliente/editar"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/cliente/editar":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <PersonSearchIcon  />
@@ -155,7 +156,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Buscar" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/cliente/vehiculos"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/cliente/vehiculos":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <MinorCrashIcon/>
@@ -163,7 +164,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Vehiculos" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/cliente/registros"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/cliente/registros":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <BallotIcon  />
@@ -182,7 +183,7 @@ export default function ListSidebar(){
                 </ListItemButton>
                 <Collapse in={openCitas} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                    <Link to={"/lavado/registros"} style={{ textDecoration: 'none' }}>
+                    <Link to={isTokenValid()==="autenticado"?"/lavado/registros":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <BallotIcon  />
@@ -190,7 +191,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Registros" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/lavado/crear"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/lavado/crear":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <EventIcon  />
@@ -198,7 +199,7 @@ export default function ListSidebar(){
                                 <ListItemText primary="Crear" sx={{color:"black"}}/>
                             </ListItemButton>
                         </Link>
-                        <Link to={"/lavado/progreso"} style={{ textDecoration: 'none' }}>
+                        <Link to={isTokenValid()==="autenticado"?"/lavado/progreso":"/login"} style={{ textDecoration: 'none' }}>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <ModelTrainingIcon  />

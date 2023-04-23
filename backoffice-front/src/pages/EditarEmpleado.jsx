@@ -82,12 +82,14 @@ export default function EditarEmpleado() {
     axios.get(`http://localhost:3000/empleados/${id}`)
       .then(response => {
         setEmpleado(response.data);
-        
+        console.log(response.data)
       
         
       })
       .catch(error => {
         console.log(error);
+
+        setOpen(error?true:false)
       });
   };
   
@@ -95,7 +97,6 @@ export default function EditarEmpleado() {
     axios.patch(`http://localhost:3000/empleados/${id}`, {
       genero: genero,
       estado: estado,
-      puesto: puesto,
       primerNombre: primerNombre,
       segundoNombre: segundoNombre,
       primerApellido: primerApellido,
@@ -398,13 +399,13 @@ export default function EditarEmpleado() {
 									  onChange={handleChangePuesto}
 									  row
 								  >
-									  <FormControlLabel disabled={!checked ? true : false} value="Administrador" control={<Radio />} label="Administrador" />
-									  <FormControlLabel disabled={!checked ? true : false} value="Lavador" control={<Radio />} label="Lavador" />
-									  <FormControlLabel disabled={!checked ? true : false} value="Guardia" control={<Radio />} label="Guardia" />
+									  <FormControlLabel disabled={!checked ? true : false} value={1} control={<Radio />} label="Administrador" />
+									  <FormControlLabel disabled={!checked ? true : false} value={2} control={<Radio />} label="Lavador" />
+									  <FormControlLabel disabled={!checked ? true : false} value={3} control={<Radio />} label="Guardia" />
 								  </RadioGroup>
 							  </FormControl>
 						  </Grid>
-						  <Grid item xs={12} hidden={(puesto==="Administrador")?false:true}>
+						  <Grid item xs={12} hidden={(puesto==1)?false:true}>
 							<Grid id="administrativo" container spacing={2}>
 								<Grid item xs={4} textAlign={"center"}>
 									<TextField
@@ -440,7 +441,7 @@ export default function EditarEmpleado() {
 
 							</Grid>
 						  </Grid>
-						  <Grid id="Lavador" item xs={12} hidden={(puesto==="Lavador")?false:true}>
+						  <Grid id="Lavador" item xs={12} hidden={(puesto==2)?false:true}>
 						  <Grid  container spacing={2}>
 								
 								<Grid item xs={6} textAlign={""}>

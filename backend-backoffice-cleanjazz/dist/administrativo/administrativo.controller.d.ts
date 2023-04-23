@@ -16,4 +16,5 @@ export declare class AdministrativoController {
     }): Promise<{
         accessToken: string;
     }>;
+    getAdministrativosFullInfo(): Promise<import("./administrativo.entity").Administrativo[]>;
 }

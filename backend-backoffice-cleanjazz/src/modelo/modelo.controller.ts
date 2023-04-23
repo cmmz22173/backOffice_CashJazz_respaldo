@@ -32,6 +32,6 @@ export class ModeloController {
         return this.modeloService.getModelo(id)
     }
     
-    
+  
     
 }

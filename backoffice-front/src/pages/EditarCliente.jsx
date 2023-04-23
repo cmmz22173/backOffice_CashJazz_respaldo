@@ -15,15 +15,24 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import Switch from '@mui/material/Switch';
 import axios from 'axios';
-import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { DataGrid } from '@mui/x-data-grid';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+
+const columns = [
+  { field: 'id', headerName: 'ID', width: 50 },
+   { field: 'dni', headerName: 'DNI', width: 120 },
+  { field: 'primerNombre', headerName: 'Primer Nombre', width: 120 },
+  { field: 'segundoNombre', headerName: 'Segundo Nombre', width: 120 },
+  { field: 'primerApellido', headerName: 'Primer Apellido', width: 120 },
+  { field: 'segundoApellido', headerName: 'Segundo Apellido', width: 120 },
+];
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,6 +69,21 @@ function a11yProps(index) {
 
 export default function EditarCliente() {
 
+
+
+  const [rows, setRows] = React.useState([]);
+  
+  React.useEffect(() => {
+    axios.get('http://localhost:3000/empleados')
+      .then(response => {
+        setRows(response.data);
+        
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }, []);
+
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -83,7 +107,10 @@ export default function EditarCliente() {
       .then(response => {
         setEmpleado(response.data);
         
-      
+        if(response.data.status==404)
+        alert("La busqueda no tuvo exito")
+        else
+        alert("Ya puede visualizar los datos")
         
       })
       .catch(error => {
@@ -352,15 +379,24 @@ export default function EditarCliente() {
                   
               </TabPanel>
 				  <TabPanel value={value} index={1}>
-					  <Grid container spacing={2}>
+					  <Grid container>
               <Grid item sx={12}>
-                AQUI VA IR LA TABLA DE SUS VEHICULOS
+              <div style={{ height: 400, width: '140%', marginLeft:"-2rem" }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              rowsPerPageOptions={[10, 25]}
+              disableRowSelectionOnClick
+              disableSelectionOnClick
+            />
+          </div>
               </Grid>
 					  </Grid>
 				  </TabPanel>
           <TabPanel value={value} index={2}>
 					  <Grid container spacing={2}>
-						  AQUI SE VAN A AGREGAR SUS VEHICULOS
+						  
 					  </Grid>
 				  </TabPanel>
           <TabPanel value={value} index={3}>

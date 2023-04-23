@@ -5,8 +5,16 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
-export default function ProfileMenuButton(){
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 
+export default function ProfileMenuButton(){
+    const navigate = useNavigate();
+    function handleLogout() {
+        Cookies.remove('accessToken');
+        navigate("/login") // Eliminar el accessToken de las cookies
+         // Redireccionar al usuario a la página de inicio de sesión
+      }
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -37,7 +45,7 @@ export default function ProfileMenuButton(){
             >
                 <MenuItem onClick={handleClose}>Perfil</MenuItem>
                 <Link to="/login" style={{ textDecoration: 'none' }}>
-                    <MenuItem sx={{ color: "black" }} onClick={handleClose}>Cerrar sesion</MenuItem>
+                    <MenuItem sx={{ color: "black" }} onClick={handleLogout}>Cerrar sesion</MenuItem>
                 </Link>
             </Menu>
         </div>

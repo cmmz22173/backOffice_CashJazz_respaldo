@@ -59,7 +59,7 @@ export class ModeloService {
             const updateModelo = Object.assign(modeloFound, modelo)
             return this.modeloRepository.save(updateModelo)
         }
-
+        
         
     
 }
